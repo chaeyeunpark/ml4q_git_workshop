@@ -8,16 +8,107 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/solarized.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+		section {font-size: 0.9em;}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h3>ML4Q Retreat: Git Workshop</h3>
+					<pre><code data-trim data-noescape class="language-bash">
+					git clone https://github.com/chaeyeunpark/ml4q_git_workshop
+					</code></pre>
+
+					<p style="margin-top: 4em">
+					Chae-Yeun Park, University of Cologne
+					</p>
+				</section>
+				<section>
+					<h3>Using Github/Gitlab</h3>
+					<p>
+					After registration, you need to add ssh keys (<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key">Generating a new SSH key</a>).
+					</p>
+
+					<p>Generate key with:</p>
+					<pre><code data-trim data-noescape class="language-bash">
+					ssh-keygen -t ed25519 -C "your_email@example.com"
+					</code></pre>
+					<p>and use it for Git:</p>
+					<pre><code data-trim data-noescape>
+					cat ~/.ssh/config
+
+					Host github.com
+						HostName github.com
+						IdentityFile /home/&lt;your_id>/.ssh/id_ed25519
+						User git
+					</code></pre>
+					
+					<p>Then please send me your Github account (email)</p>
+				</section>
+
+				<section>
+					<h3>Git clone</h3>
+					<pre><code data-trim data-noescape class="language-bash">
+					git clone git@github.com:chaeyeunpark/git_workshop_code.git
+					</code></pre>
+
+					<p>Now add a file (change {your_number} to 1, 2, 3, etc.)</p>
+					<pre><code data-trim data-noescape class="language-bash">
+					echo '{your_number}' > {your_number}.txt
+					git add {your_number}.txt
+					git commit -m '{your_number}.txt added'
+					</code></pre>
+
+					<p>Now you have updated your <span style="color: red">local</span> repository.</p>
+					
+				</section>
+
+				<section>
+					<img src="img/gitrepos.gif">
+				</section>
+
+				<section>
+					<h3>Communicate with a remote repository</h3>
+					<pre><code data-trim data-noescape class="language-bash">
+					git remote -v # List all remote repository
+					git pull # get update from remote
+					git push # push your local update to remote
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Git branch</h3>
+					<img src="img/git_branch.png" style="width: 60%;">
+					<p>Commonly, adding a feature needs lots of commits/reviews. Doing it in the main repository will annoy all users.</p>
+					<pre><code data-trim data-noescape class="language-bash">
+					git checkout -b branch-{your_number}
+					git status # to see the information of your current branch
+					# do whatever you want
+					</code></pre>
+				</section>
+
+				<section>
+					<p>
+					After you finish your job, you can merge it to main 
+					<pre><code data-trim data-noescape class="language-bash">
+					# after git add and git commit
+					git checkout main # goto main
+					git merge branch-{your_number} # merge branch to your local main
+					git push # update remote
+					</code></pre>
+
+					</p>
+				</section>
+
+				<section>
+					<h2>Collaborating</h2>
+				</section>
 			</div>
 		</div>
 
